@@ -6,18 +6,12 @@ export interface Contact {
   name: string;
   firstName: string;
   lastName: string;
+  title: string;
   email: string;
   companyId: number;
   lendingSpecialty: string;
   contactParentId?: number;
   contactOwnerId: number;
-}
-
-export interface Owner {
-  id: number;
-  firstName: string;
-  lastName: string;
-  userId: number;
 }
 
 const contacts: Contact[] = [
@@ -26,6 +20,7 @@ const contacts: Contact[] = [
     name: 'Matt Gillbreath',
     firstName: 'Matt',
     lastName: 'Gillbreath', 
+    title: 'Senior Credit Officer',
     email: 'mgilbreath@alliancebankofarizona.com',
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
@@ -37,6 +32,7 @@ const contacts: Contact[] = [
     name: 'Tim Bruckner',
     firstName: 'Tim',
     lastName: 'Bruckner', 
+    title: 'CCO',
     email: 'tbruckner@westernalliancebank.com',
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
@@ -49,6 +45,7 @@ const contacts: Contact[] = [
     name: 'Chuck Luhtala',
     firstName: 'Chuck',
     lastName: 'Luhtala', 
+    title: 'Senior Director Commercial Banking',
     email: 'cluhtala@westernalliancebank.com',
     companyId: 2339572225,
     lendingSpecialty: 'Commercial Lending',
@@ -60,6 +57,7 @@ const contacts: Contact[] = [
     name: 'Monica Clark',
     firstName: 'Monica',
     lastName: 'Clark', 
+    title: '',
     email: 'clark.monica@dorsey.com',
     companyId: 2506268513,
     lendingSpecialty: 'Commercial Lending',
