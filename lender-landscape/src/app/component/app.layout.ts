@@ -5,14 +5,13 @@ import { filter, Subscription } from 'rxjs';
 import { AppTopbar } from './app.topbar';
 import { AppSidebar } from './app.sidebar';
 import { AppFooter } from './app.footer';
-import { LayoutService } from '../service/layout.service';
+import { LayoutService } from './layout.service';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
     imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
-    template: `
-    <div class="layout-wrapper" [ngClass]="containerClass">
+    template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
         <div class="layout-main-container">
@@ -48,7 +47,7 @@ export class AppLayout {
             }
 
             if (this.layoutService.layoutState().staticMenuMobileActive) {
-                this.blockBodyScroll();
+                // this.blockBodyScroll();
             }
         });
 
@@ -71,24 +70,24 @@ export class AppLayout {
             this.menuOutsideClickListener();
             this.menuOutsideClickListener = null;
         }
-        this.unblockBodyScroll();
+        // this.unblockBodyScroll();
     }
 
-    blockBodyScroll(): void {
-        if (document.body.classList) {
-            document.body.classList.add('blocked-scroll');
-        } else {
-            document.body.className += ' blocked-scroll';
-        }
-    }
+    // blockBodyScroll(): void {
+    //     if (document.body.classList) {
+    //         document.body.classList.add('blocked-scroll');
+    //     } else {
+    //         document.body.className += ' blocked-scroll';
+    //     }
+    // }
 
-    unblockBodyScroll(): void {
-        if (document.body.classList) {
-            document.body.classList.remove('blocked-scroll');
-        } else {
-            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-    }
+    // unblockBodyScroll(): void {
+    //     if (document.body.classList) {
+    //         document.body.classList.remove('blocked-scroll');
+    //     } else {
+    //         document.body.className = document.body.className.replace(new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    //     }
+    // }
 
     get containerClass() {
         return {

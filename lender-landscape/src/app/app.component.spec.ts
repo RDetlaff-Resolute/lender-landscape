@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'lending-landscape' title`, () => {
+  it(`should have the 'lender-landscape' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('lending-landscape');
+    expect(app.title).toEqual('lender-landscape');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, lending-landscape');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, lender-landscape');
   });
 });
