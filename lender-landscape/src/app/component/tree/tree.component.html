@@ -1,7 +1,17 @@
 <div class="card">
-    <div class="font-semibold text-x1">Tree</div>
-    <p-tree [value]="treeValue"/> 
+    <div class="layout-tree">
+        <div class="font-semibold text-x1">Contacts</div>
+        <p-tree [value]="treeValue" [(selection)]="selectedTreeValue">
+            <ng-template let-node pTemplate="url">
+                <a [href]="node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-100 hover:text-primary">
+                    {{ node.label }}
+                </a>
+            </ng-template>
+            <ng-template let-node pTemplate="default">
+                {{ node.label }} <p-badge value="PJ"></p-badge>
+            </ng-template>
+
+        </p-tree> 
+
+    </div>
 </div>
-
-
-

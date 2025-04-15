@@ -4,13 +4,15 @@ import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
 import { ContactService } from '../../services/contact.service';
 import { Contact } from '../../services/contact.service';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 
 
 
 
 @Component({
   selector: 'app-tree',
-  imports: [TreeModule, CommonModule],
+  imports: [TreeModule, CommonModule, AvatarModule, BadgeModule],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.scss'
 })
@@ -20,7 +22,7 @@ export class TreeComponent implements OnInit {
   contactService = inject(ContactService);
   contactList: Contact[] = [];
   treeValue: TreeNode[] = [];
-  //selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
+  selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
   
   ngOnInit() {
     this.contactList = this.contactService.getContacts();
@@ -45,8 +47,17 @@ export class TreeComponent implements OnInit {
 
     this.treeValue = createDataTree(this.contactList);
     this.treeValue.forEach((node) => console.log(node));
-
+    this.treeValue.forEach((node) => this.expandTree(node));
   }
   
-  
+  private expandTree(node: TreeNode): void {    //It would be fun to try this recursively
+    node.expanded = true;
+    if (node.children) {
+      node.children.forEach(childNode => {
+        childNode.expanded = true;
+      })
+    }
+    this.treeValue = [...this.treeValue]
+  }
+
 }

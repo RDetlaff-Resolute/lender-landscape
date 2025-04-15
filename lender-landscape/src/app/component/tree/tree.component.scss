@@ -1,0 +1,15 @@
+// @use 'mixins' as *;
+
+.layout-tree {
+    padding: 0rem 0rem;
+}
+
+.layout-contacts {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.my-tree-node-class {
+    padding-left: 0;
+}

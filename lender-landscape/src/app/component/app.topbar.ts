@@ -10,7 +10,8 @@ import { LayoutService } from './layout.service';
     selector: 'app-topbar',
     standalone: true,
     imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
-    template: ` <div class="layout-topbar">
+    template: ` 
+    <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
@@ -33,7 +34,7 @@ import { LayoutService } from './layout.service';
                         />
                     </g>
                 </svg>
-                <span>SAKAI</span>
+                <span>Western Alliance</span>
             </a>
         </div>
 

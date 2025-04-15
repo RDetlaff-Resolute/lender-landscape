@@ -1,4 +1,13 @@
-Dashboard works!
-<section>
-    <app-tree></app-tree>
-</section>
+
+<div class="grid grid-cols-12 gap-8">
+    <div class="col-span-12 xl:col-span-9">
+        <div class="card">
+            Card
+            <p-avatar label="PJ" styleClass="mr-2" size="large" shape="circle" [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }"/>
+        </div>
+    </div>
+    <div class="col-span-12 xl:col-span-3">
+        <app-tree></app-tree> 
+        <!-- Pass bank id/contact array here -->
+    </div>
+</div>
