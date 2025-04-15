@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TreeComponent } from '../../component/tree/tree.component';
 // import { NotificationsWidget } from './components/notificationswidget';
 // import { StatsWidget } from './components/statswidget';
 // import { RecentSalesWidget } from './components/recentsaleswidget';
@@ -7,8 +8,8 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [], //[StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget],
-    template: `dashboard works!`
+    imports: [TreeComponent], //[StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget],
+    templateUrl: './dashboard.html'
     
 })
 export class Dashboard {}
