@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 
 @Component({
-    selector: 'main-view',
+    selector: 'bank-view',
     imports: [RouterOutlet],
     template: `
     <div>
@@ -10,4 +10,4 @@ import { RouterOutlet } from "@angular/router";
     </div>
     `
 })
-export class MainView {}
+export class BankView {}

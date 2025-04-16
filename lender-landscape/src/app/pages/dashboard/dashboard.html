@@ -1,33 +1,9 @@
 
 <div class="grid grid-cols-12 gap-8">
     <div class="col-span-12 xl:col-span-8">
-        <div class="grid grid-cols-10 gap-8">
-            <div class="col-span-10 xl:col-span-5">
-                <div class="card">
-                    <app-activity/>
-                </div>
-                <div class="card">
-                    <app-portfolio/>
-                </div>
-            </div>
-            <div class="col-span-10 xl:col-span-5">
-                <div class="card">
-                    <app-notes/>
-                </div>
-                
-            </div>
-        </div>
+        <app-leftpanel></app-leftpanel>
     </div>
     <div class="col-span-12 xl:col-span-4">
-        <div class="card">
-            <div class="font-semibold text-xl mb-4">Contacts</div>
-            <app-tree [inputContacts]="contactList"></app-tree> 
-        </div>
-        <!-- <div class="card">
-            <div class="font-semibold text-xl mb-4">Counsel</div>
-            <app-tree [inputContacts]="contactList"></app-tree> 
-        </div> -->
-        
-        <!-- Pass bank id/contact array here -->
+        <app-rightpanel [contactList]="contactList"></app-rightpanel>
     </div>
 </div>

@@ -1,28 +1,48 @@
 import { Component, inject } from '@angular/core';
 import { TreeComponent } from '../../component/tree/tree.component';
 import { AvatarModule } from 'primeng/avatar';
-// import { NotificationsWidget } from './components/notificationswidget';
-// import { StatsWidget } from './components/statswidget';
-// import { RecentSalesWidget } from './components/recentsaleswidget';
-// import { BestSellingWidget } from './components/bestsellingwidget';
-// import { RevenueStreamWidget } from './components/revenuestreamwidget';
 import { DividerModule } from 'primeng/divider';
-import { ActivityComponent } from '../../component/activity/activity.component';
-import { NotesComponent } from '../../component/notes/notes.component';
-import { PortfolioComponent } from '../../component/portfolio/portfolio.component';
-import { ContactService } from '../../services/contact.service';
+import { Contact, ContactService } from '../../services/contact.service';
+import { Company, CompanyService } from '../../services/company.service';
+import { LeftPanel } from './leftpanel';
+import { RightPanel } from "./rightpanel";
 
 @Component({
     selector: 'app-dashboard',
-    imports: [TreeComponent, DividerModule, AvatarModule, ActivityComponent, NotesComponent, PortfolioComponent], //[StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget],
+    imports: [DividerModule, AvatarModule, LeftPanel, RightPanel],
     templateUrl: './dashboard.html'
     
 })
 export class Dashboard {
     // Get contacts here
     contactService = inject(ContactService);
-    contactList = this.contactService.getContacts(); 
+    companyService = inject(CompanyService);
+    contactList = this.contactService.getContacts({companyId: 2486881241}); 
     // {companyId: 2486881241}
-    //counselList = this.contactService.getContacts();
+    counselList: Contact[] = [];
+    counselIds: number[] = [];
+
+    getContactList(companyId: number) {
+        return this.contactList;
+    }
+
+    makeCounselList(companyId: number) { 
+        this.counselIds = this.getCounselIds(companyId);
+        this.counselIds.forEach((counselId) => {
+            const tempCounselList = this.contactService.getContacts({companyId: counselId});
+        })
+    }
+
+    getCounselIds(companyId: number): number[] {
+        this.companyService.getData(companyId)[0].counsel.forEach((counselId) => {
+            this.counselIds.push(counselId);
+        })
+        return this.counselIds;
+    }
+
+    //I need to append a company (the firm) onto the top of the counsel contact tree
+ 
+    
 
 }
+

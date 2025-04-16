@@ -40,7 +40,7 @@ export class TreeComponent implements OnInit {
         ...aData, 
         key: aData.id,
         label: aData.name,
-        data: aData.email,
+        // data: aData.email,
         children: []
       }); 
       const dataTree: TreeNode[] = [];
@@ -52,7 +52,7 @@ export class TreeComponent implements OnInit {
     };
 
     this.treeValue = createDataTree(this.contactList);
-    this.treeValue.forEach((node) => console.log(node));
+    // this.treeValue.forEach((node) => console.log(node));
     this.treeValue.forEach((node) => this.expandTree(node));
   }
   
@@ -70,13 +70,16 @@ export class TreeComponent implements OnInit {
   getInitials(ownerId: number): string {
     this.initials = '';
     this.Owners = this.MyOwnerService.getData({id: ownerId});
-    this.Owners.forEach((owner) => {
-      this.initials = owner.firstName.slice(0,1) + owner.lastName.slice(0,1);
-    })
-    return this.initials;
+    return this.Owners[0].firstName.slice(0,1) + this.Owners[0].lastName.slice(0,1);
   }
 
-  getSeverity(specialty: string): "success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined {
+  getColor(ownerId: number) {
+    this.Owners = this.MyOwnerService.getData({id: ownerId});
+    return this.Owners[0].color;
+  }
+
+
+  getSeverity(specialty: string): ("success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined) {
     if (specialty == 'Commercial Lending') {
       return 'warn';
     } else if (specialty == 'Special Assets') {
@@ -85,5 +88,6 @@ export class TreeComponent implements OnInit {
       return 'success';
     }
   }
+
 
 }

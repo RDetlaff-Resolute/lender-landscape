@@ -7,6 +7,7 @@ export interface Owner {
   lastName: string;
   name: string
   userId: number;
+  color: string;
 }
 
 const owners: Owner[] = [
@@ -15,21 +16,24 @@ const owners: Owner[] = [
     firstName: 'Ryan',
     lastName: 'Detlaff',
     name: 'Ryan Detlaff',
-    userId: 65637085
+    userId: 65637085,
+    color: '#258bd1'
   },
   {
     id: 384094352,
     firstName: 'Eric',
     lastName: 'Anderes',
     name: 'Eric Anderes',
-    userId: 50985819
+    userId: 50985819,
+    color: '#03922e'
   },
   {
     id: 77388217,
     firstName: 'Kevin',
     lastName: 'Kolbus',
     name: 'Kevin Kolbus',
-    userId: 77388217
+    userId: 77388217,
+    color: '#e18e1d'
   }
 ]
 
@@ -42,7 +46,6 @@ export class OwnerService {
     if (options?.id !== undefined) {
       return owners.filter(owner => owner.id === options.id);
     }
-    console.log(owners);
     return owners;
   }
   constructor() { }

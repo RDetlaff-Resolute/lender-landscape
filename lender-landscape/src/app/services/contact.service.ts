@@ -45,14 +45,14 @@ const contacts: Contact[] = [
     contactOwnerId: 384094352
   },
   {
-    id: 328557,
+    id: 328556,
     name: 'Dave Wagner',
     firstName: 'Dave',
     lastName: 'Wagner', 
     title: 'Credit Risk Review Director',
     email: 'dwagner@westernalliancebank.com',
     companyId: 2486881241,
-    lendingSpecialty: 'Commercial Lending',
+    lendingSpecialty: 'Special Assets',
     contactParentId: -1,
     contactOwnerId: 384094352
   },

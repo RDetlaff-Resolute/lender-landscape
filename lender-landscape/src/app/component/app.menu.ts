@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AppMenuitem } from './app.menuitem';
+import { AppFooter } from "./app.footer";
 
 @Component({
     selector: 'app-menu',
     standalone: true,
-    imports: [CommonModule, AppMenuitem, RouterModule],
+    imports: [CommonModule, AppMenuitem, RouterModule, AppFooter],
     template: `
     <ul class="layout-menu">
         <ng-container *ngFor="let item of model; let i = index">
             <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
             <li *ngIf="item.separator" class="menu-separator"></li>
         </ng-container>
-    </ul> `
+        <app-footer></app-footer>
+    </ul> 
+    `
 })
 export class AppMenu {
     model: MenuItem[] = [];
@@ -28,9 +31,10 @@ export class AppMenu {
             {
                 label: 'Bank',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-building-columns', routerLink: ['/uikit/formlayout'] },
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-building-columns', routerLink: ['/dashboard'] },
+                    { label: 'Map', icon: 'pi pi-map-marker', routerLink: ['/map'] },
                 ]
-            }
+            },
         ];
     }
 }
