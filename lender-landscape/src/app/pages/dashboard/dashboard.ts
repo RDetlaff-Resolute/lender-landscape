@@ -23,6 +23,6 @@ export class Dashboard {
     contactService = inject(ContactService);
     contactList = this.contactService.getContacts(); 
     // {companyId: 2486881241}
-    counselList = this.contactService.getContacts();
+    //counselList = this.contactService.getContacts();
 
 }

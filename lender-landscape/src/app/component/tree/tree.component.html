@@ -1,6 +1,6 @@
 
 <div class="layout-tree">
-    <div class="font-semibold text-xl mb-4">Contacts</div>
+    
     <p-tree [value]="treeValue" [(selection)]="selectedTreeValue">
         <ng-template let-node pTemplate="url">
             <a [href]="node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-100 hover:text-primary">
