@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HubspotService } from './hubspot.service';
 
 export interface Contact {
   id: number;
@@ -14,6 +14,8 @@ export interface Contact {
   contactOwnerId: number;
 }
 
+
+
 const contacts: Contact[] = [
   {
     id: 97562285664,
@@ -25,7 +27,7 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
     contactParentId: 42902922752,
-    contactOwnerId: 2057511413
+    contactOwnerId: 38925889
   },
   {
     id: 42902922752,
@@ -37,9 +39,32 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
     contactParentId: -1,
-    contactOwnerId: 2057511413
-  }
-  ,
+    contactOwnerId: 38925889
+  },
+  {
+    id: 328557,
+    name: 'Dave Wagner',
+    firstName: 'Dave',
+    lastName: 'Wagner', 
+    title: 'Credit Risk Review Director',
+    email: 'dwagner@westernalliancebank.com',
+    companyId: 2486881241,
+    lendingSpecialty: 'Commercial Lending',
+    contactParentId: -1,
+    contactOwnerId: 38925889
+  },
+  {
+    id: 328557,
+    name: 'Robert Simpson',
+    firstName: 'Robert',
+    lastName: 'Simpson', 
+    title: 'Vice President',
+    email: 'rsimpson@westernalliancebank.com',
+    companyId: 2486881241,
+    lendingSpecialty: 'Special Assets',
+    contactParentId: 42902922752,
+    contactOwnerId: 38925889
+  },
   {
     id: 1213501,
     name: 'Chuck Luhtala',
@@ -71,6 +96,7 @@ const contacts: Contact[] = [
 })
 
 export class ContactService {
+  constructor() { }
   getContacts(options?: {contactId?: number, companyId?: number}): Contact[] {
 
     // Filter by contactId if provided
@@ -86,11 +112,20 @@ export class ContactService {
     return contacts;
   }
 
-  getContactsForCompany(companyId: number): Contact[] {
-    
-
-    return [];
+  getTree() {
+    const dataTree = createDataTree(contacts);
+    return dataTree;
   }
-
-  constructor() { }
 }
+
+
+const createDataTree = (dataset: any) => {
+  const hashTable = Object.create(null);
+  dataset.forEach((aData: any) => hashTable[aData.id] = {...aData, childNodes: []});
+  const dataTree: any[] = [];
+  dataset.forEach((aData: any) => {
+    if(aData.contactParentId && aData.contactParentId != -1) hashTable[aData.contactParentId].childNodes.push(hashTable[aData.id])
+    else dataTree.push(hashTable[aData.id])
+  });
+  return dataTree;
+};
