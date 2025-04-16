@@ -1,0 +1,20 @@
+
+<div class="layout-tree">
+    
+    <p-tree [value]="treeValue" [(selection)]="selectedTreeValue">
+        <ng-template let-node pTemplate="url">
+            <a [href]="node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-100 hover:text-primary">
+                {{ node.label }}
+            </a>
+        </ng-template>
+        <ng-template let-node pTemplate="default">
+            {{ node.label }} - {{node.title}} 
+            <p-badge value="EA"></p-badge>  
+            <!-- <p-chip label="{{node.lendingSpecialty}}" styleClass="m-1"></p-chip> -->
+            <p-tag value="{{node.lendingSpecialty}}"></p-tag>
+        </ng-template>
+
+    </p-tree> 
+
+</div>
+

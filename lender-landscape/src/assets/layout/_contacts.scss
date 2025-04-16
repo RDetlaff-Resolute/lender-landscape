@@ -1,0 +1,23 @@
+@use 'mixins' as *;
+
+.layout-tree {
+    position: fixed;
+    width: 20rem;
+    height: calc(100vh - 8rem);
+    z-index: 999;
+    overflow-y: auto;
+    user-select: none;
+    top: 6rem;
+    right: 2rem;
+    background-color: var(--surface-overlay);
+    border-radius: var(--content-border-radius);
+    padding: 0.2rem 1.0rem;
+}
+
+.layout-contacts {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+

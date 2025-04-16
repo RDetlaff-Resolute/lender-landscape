@@ -1,0 +1,12 @@
+<div class="font-semibold text-xl mb-4">Recent Activity</div>
+<p-timeline [value]="events">
+    <ng-template #marker let-event>
+        <i [class]="event.icon"></i>
+    </ng-template>
+    <ng-template #content let-event>
+        {{ event.status }} &nbsp; <small class="p-text-secondary">{{event.date}}</small>
+    </ng-template>
+    <!-- <ng-template #opposite let-event>
+    </ng-template> -->
+</p-timeline>
+

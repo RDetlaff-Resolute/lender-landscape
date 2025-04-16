@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HubspotService } from './hubspot.service';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+
 
 export interface Contact {
   id: number;
@@ -94,6 +97,14 @@ const contacts: Contact[] = [
 @Injectable({
   providedIn: 'root'
 })
+
+// @Component({
+//   selector: 'contact-service',
+//   imports: [TreeComponent],
+//   template: `
+//   <app-tree [inputContacts]=contacts></app-tree>
+//   `
+// })
 
 export class ContactService {
   constructor() { }
