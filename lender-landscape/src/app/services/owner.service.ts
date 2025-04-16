@@ -42,6 +42,7 @@ export class OwnerService {
     if (options?.id !== undefined) {
       return owners.filter(owner => owner.id === options.id);
     }
+    console.log(owners);
     return owners;
   }
   constructor() { }

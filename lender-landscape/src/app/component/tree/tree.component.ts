@@ -7,6 +7,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
+import { Owner, OwnerService } from '../../services/owner.service';
 
 
 
@@ -25,6 +26,7 @@ export class TreeComponent implements OnInit {
   contactList: Contact[] = [];
   treeValue: TreeNode[] = [];
   selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
+  Owners: Owner[] = [];
   initials = '';
   
   ngOnInit() {
@@ -64,13 +66,24 @@ export class TreeComponent implements OnInit {
     this.treeValue = [...this.treeValue]
   }
 
-  private getInitials(node: TreeNode): string {
-    if(node.data.firstName && node.data.lastName) {
-      this.initials = node.data.firstName;
-    } else {
-      this.initials = '?';
-    }
+  private MyOwnerService = inject(OwnerService)
+  getInitials(ownerId: number): string {
+    this.initials = '';
+    this.Owners = this.MyOwnerService.getData({id: ownerId});
+    this.Owners.forEach((owner) => {
+      this.initials = owner.firstName.slice(0,1) + owner.lastName.slice(0,1);
+    })
     return this.initials;
+  }
+
+  getSeverity(specialty: string): "success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined {
+    if (specialty == 'Commercial Lending') {
+      return 'warn';
+    } else if (specialty == 'Special Assets') {
+      return 'info';
+    } else {
+      return 'success';
+    }
   }
 
 }

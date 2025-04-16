@@ -30,7 +30,7 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
     contactParentId: 42902922752,
-    contactOwnerId: 38925889
+    contactOwnerId: 384094352
   },
   {
     id: 42902922752,
@@ -42,7 +42,7 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
     contactParentId: -1,
-    contactOwnerId: 38925889
+    contactOwnerId: 384094352
   },
   {
     id: 328557,
@@ -54,7 +54,7 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Commercial Lending',
     contactParentId: -1,
-    contactOwnerId: 38925889
+    contactOwnerId: 384094352
   },
   {
     id: 328557,
@@ -66,7 +66,7 @@ const contacts: Contact[] = [
     companyId: 2486881241,
     lendingSpecialty: 'Special Assets',
     contactParentId: 42902922752,
-    contactOwnerId: 38925889
+    contactOwnerId: 384094352
   },
   {
     id: 1213501,
