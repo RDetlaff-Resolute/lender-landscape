@@ -1,32 +1,36 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
-import { ContactService } from '../../services/contact.service';
 import { Contact } from '../../services/contact.service';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
-
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
 
 
 
 @Component({
   selector: 'app-tree',
-  imports: [TreeModule, CommonModule, AvatarModule, BadgeModule],
+  imports: [TreeModule, CommonModule, AvatarModule, BadgeModule, ChipModule, TagModule],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.scss'
 })
 export class TreeComponent implements OnInit {
   // treeValue = TreeService(contacts);   // Make sure we move our function to a tree service later
 
-  contactService = inject(ContactService);
+  @Input() inputContacts: any;
+
+  
   contactList: Contact[] = [];
   treeValue: TreeNode[] = [];
   selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
+  initials = '';
   
   ngOnInit() {
-    this.contactList = this.contactService.getContacts();
+    
     //this.contactList.forEach((contact) => console.log(contact));
+    this.contactList = this.inputContacts;
     
     const createDataTree = (dataset: Contact[]) => {
       const hashTable = Object.create(null);
@@ -58,6 +62,15 @@ export class TreeComponent implements OnInit {
       })
     }
     this.treeValue = [...this.treeValue]
+  }
+
+  private getInitials(node: TreeNode): string {
+    if(node.data.firstName && node.data.lastName) {
+      this.initials = node.data.firstName;
+    } else {
+      this.initials = '?';
+    }
+    return this.initials;
   }
 
 }

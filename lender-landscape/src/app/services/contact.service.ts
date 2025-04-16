@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { TreeComponent } from '../component/tree/tree.component';
 
 export interface Contact {
   id: number;
@@ -69,6 +71,14 @@ const contacts: Contact[] = [
 @Injectable({
   providedIn: 'root'
 })
+
+// @Component({
+//   selector: 'contact-service',
+//   imports: [TreeComponent],
+//   template: `
+//   <app-tree [inputContacts]=contacts></app-tree>
+//   `
+// })
 
 export class ContactService {
   getContacts(options?: {contactId?: number, companyId?: number}): Contact[] {

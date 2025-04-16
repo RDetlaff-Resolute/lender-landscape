@@ -4,14 +4,13 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { AppTopbar } from './app.topbar';
 import { AppSidebar } from './app.sidebar';
-import { AppFooter } from './app.footer';
 import { LayoutService } from './layout.service';
 import { MainView } from "./app.mainview";
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, MainView],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, MainView],
     template: `
     <div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
@@ -20,7 +19,6 @@ import { MainView } from "./app.mainview";
             <div class="layout-main">
                 <main-view></main-view>
             </div>
-            <app-footer></app-footer>
         </div>
         <div class="layout-mask animate-fadein"></div>
     </div> `
@@ -74,6 +72,8 @@ export class AppLayout {
         }
         // this.unblockBodyScroll();
     }
+
+    
 
     // blockBodyScroll(): void {
     //     if (document.body.classList) {
