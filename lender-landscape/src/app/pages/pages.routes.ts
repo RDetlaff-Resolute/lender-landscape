@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
-// import { Documentation } from './documentation/documentation';
-// import { Crud } from './crud/crud';
-// import { Empty } from './empty/empty';
+import { BankmapComponent } from './bankmap/bankmap.component';
+import { Dashboard } from './dashboard/dashboard';
+import { HomeComponent } from './home/home.component';
 
 export default [
-    // { path: 'documentation', component: Documentation },
-    // { path: 'crud', component: Crud },
-    // { path: 'empty', component: Empty },
-    // { path: '**', redirectTo: '/notfound' }
+    { path: '', data: { breadCrumb: 'Home'}, component: HomeComponent },
+    { path: 'dashboard', data: { breadCrumb: 'Dashboard'}, component: Dashboard },
+    { path: 'map', data: { breadCrumb: 'Map'}, component: BankmapComponent },
 ] as Routes;

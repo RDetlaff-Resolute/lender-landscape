@@ -5,19 +5,19 @@ import { filter, Subscription } from 'rxjs';
 import { AppTopbar } from './app.topbar';
 import { AppSidebar } from './app.sidebar';
 import { LayoutService } from './layout.service';
-import { MainView } from "./app.mainview";
+import { BankView } from "./app.bankview";
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, MainView],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, BankView],
     template: `
     <div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
         <div class="layout-main-container">
             <div class="layout-main">
-                <main-view></main-view>
+                <bank-view></bank-view>
             </div>
         </div>
         <div class="layout-mask animate-fadein"></div>

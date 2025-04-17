@@ -22,7 +22,7 @@ export class TreeComponent implements OnInit {
 
   @Input() inputContacts: any;
 
-  
+  private MyOwnerService = inject(OwnerService)
   contactList: Contact[] = [];
   treeValue: TreeNode[] = [];
   selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
@@ -40,7 +40,6 @@ export class TreeComponent implements OnInit {
         ...aData, 
         key: aData.id,
         label: aData.name,
-        data: aData.email,
         children: []
       }); 
       const dataTree: TreeNode[] = [];
@@ -55,7 +54,7 @@ export class TreeComponent implements OnInit {
     this.treeValue.forEach((node) => console.log(node));
     this.treeValue.forEach((node) => this.expandTree(node));
   }
-  
+
   private expandTree(node: TreeNode): void {    //It would be fun to try this recursively
     node.expanded = true;
     if (node.children) {
@@ -66,17 +65,18 @@ export class TreeComponent implements OnInit {
     this.treeValue = [...this.treeValue]
   }
 
-  private MyOwnerService = inject(OwnerService)
+  
   getInitials(ownerId: number): string {
-    this.initials = '';
     this.Owners = this.MyOwnerService.getData({id: ownerId});
-    this.Owners.forEach((owner) => {
-      this.initials = owner.firstName.slice(0,1) + owner.lastName.slice(0,1);
-    })
-    return this.initials;
+    return this.Owners[0].firstName.slice(0,1) + this.Owners[0].lastName.slice(0,1);
   }
 
-  getSeverity(specialty: string): "success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined {
+  getColor(ownerId: number) {
+    this.Owners = this.MyOwnerService.getData({id: ownerId});
+    return this.Owners[0].color;
+  }
+
+  getSeverity(specialty: string): ("success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined) {
     if (specialty == 'Commercial Lending') {
       return 'warn';
     } else if (specialty == 'Special Assets') {
@@ -85,5 +85,6 @@ export class TreeComponent implements OnInit {
       return 'success';
     }
   }
+
 
 }

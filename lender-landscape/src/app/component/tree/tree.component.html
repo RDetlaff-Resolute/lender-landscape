@@ -8,15 +8,18 @@
             </a>
         </ng-template>
         <ng-template let-node pTemplate="default">
-            {{ node.label }} - {{node.title}} 
-            &nbsp;
-            <p-badge value="{{getInitials(node.contactOwnerId)}}"></p-badge>  
+            <a>
+                {{ node.label }}
+            </a>
+            <!-- <p-avatar class="mr-2" label="{{getInitials(node.contactOwnerId)}}" [style]="{ 'background-color': getColor(node.contactOwnerId), color: '#ffffff' }" shape="circle"></p-avatar> -->
+            <!-- <p-badge value="{{getInitials(node.contactOwnerId)}}"></p-badge>   -->
             &nbsp;
             <!-- <p-chip label="{{node.lendingSpecialty}}" styleClass="m-1"></p-chip> -->
-            <p-tag value="{{node.lendingSpecialty}}" severity="{{getSeverity(node.lendingSpecialty)}}"></p-tag>
+            <p-tag value="{{node.lendingSpecialty}}" [severity]="getSeverity(node.lendingSpecialty)"></p-tag>
+            <p>
+                {{node.title}}
+            </p>
         </ng-template>
-
     </p-tree> 
-
 </div>
 

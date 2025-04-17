@@ -44,6 +44,18 @@ export class CompanyService {
         website: 'https://www.alliancebankofarizona.com',
         counsel: [2506268513],
         consultants: [2329231648]
+      },
+      {
+        id: 2506268513,
+        name: 'Law Firm',
+        address: '1 E Lawfirm St',
+        city: 'Phoenix',
+        state: 'AZ',
+        zip: '85004',
+        phone: '(602) 389-3500',
+        website: '',
+        counsel: [-1],
+        consultants: [-1]
       }
     ]
 
@@ -54,5 +66,19 @@ export class CompanyService {
 
     return companies;
   }
+
+  getLogo(companyId: number): string {
+    const starterLogoUrl = new URL('https://img.logo.dev/');
+    const endingLogoUrl = new URL('?token=pk_SeIzsNJZQymDcnK69KbQeg');
+
+    try{
+      const url = new URL(this.getData(companyId)[0].website);
+      return starterLogoUrl + url.hostname + endingLogoUrl;
+    } catch (error) {
+      console.log(error)
+    }
+     return '';
+  }
+
   constructor() { }
 }
