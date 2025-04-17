@@ -30,6 +30,13 @@ const owners: Owner[] = [
     lastName: 'Kolbus',
     name: 'Kevin Kolbus',
     userId: 77388217
+  },
+  {
+    id: 38925889,
+    firstName: 'Jeremiah',
+    lastName: 'Foster',
+    name: 'Jeremiah Foster',
+    userId: 38925889
   }
 ]
 

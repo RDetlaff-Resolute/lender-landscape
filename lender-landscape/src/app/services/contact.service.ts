@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HubspotService } from './hubspot.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { query } from '@angular/animations';
 
 
 export interface Contact {

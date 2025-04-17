@@ -21,7 +21,7 @@
     <div class="col-span-12 xl:col-span-4">
         <div class="card">
             <div class="font-semibold text-xl mb-4">Contacts</div>
-            <app-tree [inputContacts]="contactList"></app-tree> 
+            <app-tree *ngIf="contactList$ | async as data" [inputContacts]="data"></app-tree> 
         </div>
         <!-- <div class="card">
             <div class="font-semibold text-xl mb-4">Counsel</div>
