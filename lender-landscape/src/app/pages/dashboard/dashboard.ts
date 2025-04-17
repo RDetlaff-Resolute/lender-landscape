@@ -5,7 +5,7 @@ import { DividerModule } from 'primeng/divider';
 import { Contact, ContactService } from '../../services/contact.service';
 import { Company, CompanyService } from '../../services/company.service';
 import { LeftPanel } from './leftpanel';
-import { RightPanel, Contact } from "./rightpanel";
+import { RightPanel } from "./rightpanel";
 import { Observable } from 'rxjs';
 import { CommonModule, AsyncPipe } from '@angular/common';
 
@@ -28,7 +28,7 @@ export class Dashboard {
     
 
     ngOnInit() {
-        this.contactList = this.contactService.getContacts({companyId: 2486881241}); // If you don't include a companyId this breaks
+        this.contactList$ = this.contactService.getContactsApi({companyId: 2486881241}); // If you don't include a companyId this breaks
         this.myCounselContactList = this.makeCounselList(2486881241);
     }
 
@@ -78,10 +78,6 @@ export class Dashboard {
             this.counselIds.push(counselId);
         })
         return this.counselIds;
-    }
-
-    getContactList(companyId: number) {
-        return this.contactList;
     }
 }
 

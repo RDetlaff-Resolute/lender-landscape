@@ -46,14 +46,14 @@ const contacts: Contact[] = [
     contactOwnerId: 384094352
   },
   {
-    id: 328556,
+    id: 328557,
     name: 'Dave Wagner',
     firstName: 'Dave',
     lastName: 'Wagner', 
     title: 'Credit Risk Review Director',
     email: 'dwagner@westernalliancebank.com',
     companyId: 2486881241,
-    lendingSpecialty: 'Special Assets',
+    lendingSpecialty: 'Commercial Lending',
     contactParentId: -1,
     contactOwnerId: 384094352
   },
@@ -108,9 +108,9 @@ const contacts: Contact[] = [
 // })
 
 export class ContactService {
-  constructor() { }
+  constructor( private http: HttpClient) { }
   getContacts(options?: {contactId?: number, companyId?: number}): Contact[] {
-
+    // Simulate an API call
     // Filter by contactId if provided
     if (options?.contactId !== undefined) {
       return contacts.filter(contact => contact.id === options.contactId);
@@ -124,20 +124,15 @@ export class ContactService {
     return contacts;
   }
 
-  getTree() {
-    const dataTree = createDataTree(contacts);
-    return dataTree;
+  getContactsApi(options?: {contactId?: number, companyId?: number}): Observable<Contact[]> {
+    const BASE_URL = 'http://localhost:5000/api/';
+    var queryString = '';
+    if (options?.companyId !== undefined) {
+      queryString = `company/${options.companyId}/contacts`;
+    }
+    if (options?.contactId !== undefined) {
+      queryString = `contacts/${options.contactId}`;
+    }
+    return this.http.get<Contact[]>(BASE_URL + queryString);
   }
 }
-
-
-const createDataTree = (dataset: any) => {
-  const hashTable = Object.create(null);
-  dataset.forEach((aData: any) => hashTable[aData.id] = {...aData, childNodes: []});
-  const dataTree: any[] = [];
-  dataset.forEach((aData: any) => {
-    if(aData.contactParentId && aData.contactParentId != -1) hashTable[aData.contactParentId].childNodes.push(hashTable[aData.id])
-    else dataTree.push(hashTable[aData.id])
-  });
-  return dataTree;
-};

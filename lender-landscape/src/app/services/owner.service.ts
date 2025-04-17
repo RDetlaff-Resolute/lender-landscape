@@ -32,19 +32,16 @@ const owners: Owner[] = [
     firstName: 'Kevin',
     lastName: 'Kolbus',
     name: 'Kevin Kolbus',
-<<<<<<< HEAD
-    userId: 77388217
+    userId: 77388217,
+    color: '#f4b400'
   },
   {
     id: 38925889,
     firstName: 'Jeremiah',
     lastName: 'Foster',
     name: 'Jeremiah Foster',
-    userId: 38925889
-=======
-    userId: 77388217,
+    userId: 38925889,
     color: '#e18e1d'
->>>>>>> 55cee72eaf6042feb205a79962bce677865febb3
   }
 ]
 
