@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TreeComponent } from '../../component/tree/tree.component';
 import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
@@ -26,11 +26,13 @@ export class Dashboard {
         return this.contactList;
     }
 
-    makeCounselList(companyId: number) { 
+    makeCounselList(companyId: number) {    //I need to append a company (the firm) onto the top of each counsel contact tree
         this.counselIds = this.getCounselIds(companyId);
-        this.counselIds.forEach((counselId) => {
-            const tempCounselList = this.contactService.getContacts({companyId: counselId});
-        })
+        
+
+        // this.counselIds.forEach((counselId) => {
+        //     const tempCounselList = this.contactService.getContacts({companyId: counselId});
+        // })
     }
 
     getCounselIds(companyId: number): number[] {
@@ -40,7 +42,7 @@ export class Dashboard {
         return this.counselIds;
     }
 
-    //I need to append a company (the firm) onto the top of the counsel contact tree
+    
  
     
 

@@ -22,7 +22,7 @@ export class TreeComponent implements OnInit {
 
   @Input() inputContacts: any;
 
-  
+  private MyOwnerService = inject(OwnerService)
   contactList: Contact[] = [];
   treeValue: TreeNode[] = [];
   selectedTreeValue: TreeNode[] = []; //Only needed for checkboxes
@@ -55,7 +55,7 @@ export class TreeComponent implements OnInit {
     // this.treeValue.forEach((node) => console.log(node));
     this.treeValue.forEach((node) => this.expandTree(node));
   }
-  
+
   private expandTree(node: TreeNode): void {    //It would be fun to try this recursively
     node.expanded = true;
     if (node.children) {
@@ -66,7 +66,7 @@ export class TreeComponent implements OnInit {
     this.treeValue = [...this.treeValue]
   }
 
-  private MyOwnerService = inject(OwnerService)
+  
   getInitials(ownerId: number): string {
     this.initials = '';
     this.Owners = this.MyOwnerService.getData({id: ownerId});
@@ -77,7 +77,6 @@ export class TreeComponent implements OnInit {
     this.Owners = this.MyOwnerService.getData({id: ownerId});
     return this.Owners[0].color;
   }
-
 
   getSeverity(specialty: string): ("success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined) {
     if (specialty == 'Commercial Lending') {

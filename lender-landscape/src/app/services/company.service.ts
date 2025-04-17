@@ -54,5 +54,19 @@ export class CompanyService {
 
     return companies;
   }
+
+  getLogo(companyId: number): string {
+    const starterLogoUrl = new URL('https://img.logo.dev/');
+    const endingLogoUrl = new URL('?token=pk_SeIzsNJZQymDcnK69KbQeg');
+
+    try{
+      const url = new URL(this.getData(companyId)[0].website);
+      return starterLogoUrl + url.hostname + endingLogoUrl;
+    } catch (error) {
+      console.log(error)
+    }
+     return '';
+  }
+
   constructor() { }
 }
