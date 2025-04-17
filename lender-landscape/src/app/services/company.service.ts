@@ -44,6 +44,18 @@ export class CompanyService {
         website: 'https://www.alliancebankofarizona.com',
         counsel: [2506268513],
         consultants: [2329231648]
+      },
+      {
+        id: 2506268513,
+        name: 'Law Firm',
+        address: '1 E Lawfirm St',
+        city: 'Phoenix',
+        state: 'AZ',
+        zip: '85004',
+        phone: '(602) 389-3500',
+        website: '',
+        counsel: [-1],
+        consultants: [-1]
       }
     ]
 

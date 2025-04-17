@@ -14,25 +14,60 @@ import { RightPanel } from "./rightpanel";
     
 })
 export class Dashboard {
-    // Get contacts here
     contactService = inject(ContactService);
-    companyService = inject(CompanyService);
-    contactList = this.contactService.getContacts({companyId: 2486881241}); 
+    contactList: Contact[] = [];
     // {companyId: 2486881241}
-    counselList: Contact[] = [];
+
+    companyService = inject(CompanyService);
+    myCounselContactList: Contact[] = [];
     counselIds: number[] = [];
 
-    getContactList(companyId: number) {
-        return this.contactList;
+    
+
+    ngOnInit() {
+        this.contactList = this.contactService.getContacts({companyId: 2486881241}); // If you don't include a companyId this breaks
+        this.myCounselContactList = this.makeCounselList(2486881241);
     }
 
-    makeCounselList(companyId: number) {    //I need to append a company (the firm) onto the top of each counsel contact tree
-        this.counselIds = this.getCounselIds(companyId);
-        
 
-        // this.counselIds.forEach((counselId) => {
-        //     const tempCounselList = this.contactService.getContacts({companyId: counselId});
-        // })
+    makeCounselList(companyId: number):Contact[] {    //I need to append a company (the firm) onto the top of each counsel contact tree
+        this.counselIds = this.getCounselIds(companyId);
+        console.log('counselIds', this.counselIds);
+        var updatedCounselContactList: Contact[] = [];
+        this.counselIds.forEach((counselId) => {
+            const tempContactList = this.contactService.getContacts({companyId: counselId});
+            console.log('tempContactList ', tempContactList);
+            const tempFirm = this.companyService.getData(counselId)[0];
+            console.log('tempFirm', tempFirm);
+            //make a contact with tempFirm's properties
+            const firmContact: Contact = {
+                id: tempFirm.id,
+                name: tempFirm.name,
+                firstName: tempFirm.name,
+                lastName: tempFirm.name,
+                title: '',
+                email: '',
+                companyId: -1,
+                lendingSpecialty: '',
+                contactParentId: -1,
+                contactOwnerId: -1
+            }
+            console.log('firmContact',firmContact);
+            //for each parent contact in tempContactList, make tempFirm their parent
+            tempContactList.forEach((contact) => { //do this in one line - filter (map)
+                if (contact.contactParentId == -1) {
+                    console.log(contact.firstName);
+                    contact.contactParentId = firmContact.id;
+                }
+            })
+            //add firmContact to tempContactList
+            tempContactList.push(firmContact);
+            console.log('tempContactList', tempContactList)
+            //add updated firm contact list to counsel contact list
+            updatedCounselContactList = updatedCounselContactList.concat(tempContactList)
+            console.log('counselContactList', updatedCounselContactList);
+        })
+        return updatedCounselContactList;
     }
 
     getCounselIds(companyId: number): number[] {
@@ -42,9 +77,8 @@ export class Dashboard {
         return this.counselIds;
     }
 
-    
- 
-    
-
+    getContactList(companyId: number) {
+        return this.contactList;
+    }
 }
 

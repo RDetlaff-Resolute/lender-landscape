@@ -9,4 +9,5 @@ import { TreeComponent } from "../../component/tree/tree.component";
 })
 export class RightPanel {
     @Input() contactList: any;
+    @Input() counselContactList: any;
 }

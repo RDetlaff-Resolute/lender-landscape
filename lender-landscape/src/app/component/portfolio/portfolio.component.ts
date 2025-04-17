@@ -18,16 +18,16 @@ export class PortfolioComponent {
   }
 
   initCharts() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
+    // const documentStyle = getComputedStyle(document.documentElement);
+    // const textColor = documentStyle.getPropertyValue('--text-color');
 
     this.pieData = {
       labels: ['C&I', 'ABL', 'Mortgage'],
       datasets: [
           {
               data: [540, 325, 702],
-              backgroundColor: [documentStyle.getPropertyValue('--p-indigo-500'), documentStyle.getPropertyValue('--p-purple-500'), documentStyle.getPropertyValue('--p-teal-500')],
-              hoverBackgroundColor: [documentStyle.getPropertyValue('--p-indigo-400'), documentStyle.getPropertyValue('--p-purple-400'), documentStyle.getPropertyValue('--p-teal-400')]
+              // backgroundColor: [documentStyle.getPropertyValue('--p-indigo-500'), documentStyle.getPropertyValue('--p-purple-500'), documentStyle.getPropertyValue('--p-teal-500')],
+              // hoverBackgroundColor: [documentStyle.getPropertyValue('--p-indigo-400'), documentStyle.getPropertyValue('--p-purple-400'), documentStyle.getPropertyValue('--p-teal-400')]
           }
       ]
     };
@@ -36,7 +36,7 @@ export class PortfolioComponent {
           legend: {
               labels: {
                   usePointStyle: true,
-                  color: textColor
+                  // color: textColor
               }
           }
       }
