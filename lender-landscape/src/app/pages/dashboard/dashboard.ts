@@ -6,7 +6,7 @@ import { Contact, ContactService } from '../../services/contact.service';
 import { Company, CompanyService } from '../../services/company.service';
 import { LeftPanel } from './leftpanel';
 import { RightPanel } from "./rightpanel";
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CommonModule, AsyncPipe } from '@angular/common';
 
 @Component({
@@ -29,11 +29,12 @@ export class Dashboard {
 
     ngOnInit() {
         this.contactList$ = this.contactService.getContactsApi({companyId: 2486881241}); // If you don't include a companyId this breaks
+        // this.contactList$ = of (this.contactService.getContacts({companyId: 2486881241}));
         this.myCounselContactList = this.makeCounselList(2486881241);
     }
 
 
-    makeCounselList(companyId: number):Contact[] {    //I need to append a company (the firm) onto the top of each counsel contact tree
+    makeCounselList(companyId: number):Contact[] {
         this.counselIds = this.getCounselIds(companyId);
         console.log('counselIds', this.counselIds);
         var updatedCounselContactList: Contact[] = [];
@@ -42,8 +43,8 @@ export class Dashboard {
             console.log('tempContactList ', tempContactList);
             const tempFirm = this.companyService.getData(counselId)[0];
             console.log('tempFirm', tempFirm);
-            //make a contact with tempFirm's properties
-            const firmContact: Contact = {
+            
+            const firmContact: Contact = {  //make a contact with tempFirm's properties
                 id: tempFirm.id,
                 name: tempFirm.name,
                 firstName: tempFirm.name,
@@ -56,6 +57,7 @@ export class Dashboard {
                 contactOwnerId: -1
             }
             console.log('firmContact',firmContact);
+
             //for each parent contact in tempContactList, make tempFirm their parent
             tempContactList.forEach((contact) => { //do this in one line - filter (map)
                 if (contact.contactParentId == -1) {
@@ -63,11 +65,11 @@ export class Dashboard {
                     contact.contactParentId = firmContact.id;
                 }
             })
-            //add firmContact to tempContactList
-            tempContactList.push(firmContact);
+            
+            tempContactList.push(firmContact);  //add firmContact to tempContactList
             console.log('tempContactList', tempContactList)
-            //add updated firm contact list to counsel contact list
-            updatedCounselContactList = updatedCounselContactList.concat(tempContactList)
+            
+            updatedCounselContactList = updatedCounselContactList.concat(tempContactList)   //add updated firm contact list to counsel contact list
             console.log('counselContactList', updatedCounselContactList);
         })
         return updatedCounselContactList;

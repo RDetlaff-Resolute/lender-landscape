@@ -11,11 +11,14 @@
             <a>
                 {{ node.label }}
             </a>
-            <!-- <p-avatar class="mr-2" label="{{getInitials(node.contactOwnerId)}}" [style]="{ 'background-color': getColor(node.contactOwnerId), color: '#ffffff' }" shape="circle"></p-avatar> -->
-            <!-- <p-badge value="{{getInitials(node.contactOwnerId)}}"></p-badge>   -->
-            &nbsp;
-            <!-- <p-chip label="{{node.lendingSpecialty}}" styleClass="m-1"></p-chip> -->
-            <p-tag value="{{node.lendingSpecialty}}" [severity]="getSeverity(node.lendingSpecialty)"></p-tag>
+            <ng-template [ngIf]="node.contactOwnerId !== -1">
+                <p-avatar class="mr-2" label="{{getInitials(node.contactOwnerId)}}" [style]="{ 'background-color': getColor(node.contactOwnerId), color: '#ffffff' }" shape="circle"></p-avatar>
+                <!-- <p-badge value="{{getInitials(node.contactOwnerId)}}"></p-badge>   -->
+            </ng-template>
+            <ng-template [ngIf]="node.lendingSpecialty">
+                <p-tag value="{{node.lendingSpecialty}}" [severity]="getSeverity(node.lendingSpecialty)"></p-tag>
+                <!-- <p-chip label="{{node.lendingSpecialty}}" styleClass="m-1"></p-chip> -->
+            </ng-template>
             <p>
                 {{node.title}}
             </p>

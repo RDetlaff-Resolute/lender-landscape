@@ -8,12 +8,13 @@ import { BadgeModule } from 'primeng/badge';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
 import { Owner, OwnerService } from '../../services/owner.service';
+import { NgIf } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-tree',
-  imports: [TreeModule, CommonModule, AvatarModule, BadgeModule, ChipModule, TagModule],
+  imports: [TreeModule, CommonModule, AvatarModule, BadgeModule, ChipModule, TagModule, NgIf],
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.scss'
 })
@@ -68,12 +69,23 @@ export class TreeComponent implements OnInit {
   
   getInitials(ownerId: number): string {
     this.Owners = this.MyOwnerService.getData({id: ownerId});
-    return this.Owners[0].firstName.slice(0,1) + this.Owners[0].lastName.slice(0,1);
+    try {
+      return this.Owners[0].firstName.slice(0,1) + this.Owners[0].lastName.slice(0,1);
+    }
+    catch (error: any) {
+      return 'X';
+    }
+    
   }
 
   getColor(ownerId: number) {
     this.Owners = this.MyOwnerService.getData({id: ownerId});
-    return this.Owners[0].color;
+    try {
+      return this.Owners[0].color;
+    }
+    catch (error: any) {
+      return '#feeegf';
+    }
   }
 
   getSeverity(specialty: string): ("success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined) {
